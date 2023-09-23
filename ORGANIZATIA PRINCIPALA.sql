@@ -693,11 +693,49 @@ CALL populare_furnizori_usa();
 SELECT * FROM furnizori_usa;
 
 DELIMITER //
-CREATE PROCEDURE 
+CREATE FUNCTION calculeaza_discount_logi(denumire VARCHAR(100)) RETURNS TEXT
 BEGIN
+	DECLARE brandul_produsului VARCHAR(100);
+    DECLARE denumirea_produsului VARCHAR(200);
+    DECLARE pretul_produsului MEDIUMINT;
+    DECLARE aplicare_discount FLOAT;
+    DECLARE detalii_produs_discount TEXT;
+    DECLARE lista_produse TEXT;
+    
+    DECLARE semafor TINYINT DEFAULT 1;
+    
+    DECLARE cursor_discount_produse CURSOR FOR 
+		SELECT produse.brand, produse.denumire, produse.pret_lei
+        FROM produse 
+        WHERE brand = "Logitech";
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET semafor = 0;
+    
+    OPEN cursor_discount_produse;
+    logi : LOOP
+		FETCH cursor_discount_produse INTO brandul_produsului, denumirea_produsului, pretul_produsului;
+        IF semafor = 0 THEN 
+			LEAVE logi;
+        ELSE
+			IF pretul_produsului >= 200 THEN
+				SET aplicare_discount = 0.5;
+			ELSE 
+				SET aplicare_discount = 0.2;
+			END IF;
+            
+            SET detalii_produs_discount = CONCAT(denumirea_produsului, "pret cu discount: ", CEIL( pretul_produsului * aplicare_discount));
+            SET lista_produse = CONCAT_WS("/", lista_produse, detalii_produs_discount);
+            
+        END IF;
+    END LOOP logi;
+    CLOSE cursor_discount_produse;
+    RETURN lista_produse;
 END;
 //
 DELIMITER ;
+
+SELECT calculeaza_discount_logi("Master 3S Mouse");
+
+
 
 # TRIGGERI - EXEMPLE
 
