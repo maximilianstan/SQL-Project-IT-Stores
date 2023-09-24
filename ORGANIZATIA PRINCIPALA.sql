@@ -838,3 +838,13 @@ SELECT * FROM comenzi;
 
 SELECT * FROM comenzi_log;
 
+# SUGETI PULA MAI FLACAI;
+
+DELIMITER //
+
+CREATE FUNCTION il_strang_de_gat_pe_cret
+BEGIN
+END;
+//
+DELIMITER ;
+
