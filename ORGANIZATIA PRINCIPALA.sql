@@ -839,3 +839,4 @@ SELECT * FROM comenzi;
 SELECT * FROM comenzi_log;
 
 
+
