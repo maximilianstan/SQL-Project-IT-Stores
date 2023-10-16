@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS organizatia_principala;
 USE organizatia_principala;
 
-# CREAREA TABELELOR ( 7 tabele) - EXEMPLE
+# CREAREA TABELELOR ( 7 tabele) 
 
 CREATE TABLE IF NOT EXISTS magazine (
 id TINYINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
