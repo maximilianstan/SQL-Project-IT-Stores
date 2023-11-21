@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS organizatia_principala;
 USE organizatia_principala;
 
-# CREAREA TABELELOR ( 7 tabele) 
+# CREAREA TABELELOR ( 7 tabele) - EXEMPLE
 
 CREATE TABLE IF NOT EXISTS magazine (
 id TINYINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -411,7 +411,7 @@ SELECT COUNT(id) FROM angajati WHERE salariu <= "8000";
 
 SELECT COUNT(id) FROM angajati WHERE stare_civila = "Necasatorit";
 
-SELECT * FROM angajati ORDER BY salariu DESC LIMIT 1, 1;
+SELECT * FROM angajati ORDER BY salariu DESC ;
 
 # SUBINTEROGARI - SUBSELECT
 
@@ -838,5 +838,10 @@ SELECT * FROM comenzi;
 
 SELECT * FROM comenzi_log;
 
+SHOW TABLES;
+
+SHOW DATABASES;
+
+SAVEPOINT salvare_finala;
 
 
