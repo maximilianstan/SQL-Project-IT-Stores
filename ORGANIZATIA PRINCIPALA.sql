@@ -844,4 +844,8 @@ SHOW DATABASES;
 
 SAVEPOINT salvare_finala;
 
+SELECT denumire, brand, pret_lei AS produse
+FROM organizatia_principala.produse ;
+
+
 
